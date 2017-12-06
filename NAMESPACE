@@ -1,0 +1,5 @@
+import(igraph)
+import(rdiversity)
+export(get.metaweb)
+export(div.partition)
+export(dis.beta)

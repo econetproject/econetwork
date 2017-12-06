@@ -1,0 +1,12 @@
+Rplots.pdf
+devtests
+build
+tmp
+divnet.Rcheck
+.git
+.settings
+^.*\.gz$
+^.*\.zip$
+^.*\.Rproj$
+^\.Rproj\.user$
+
