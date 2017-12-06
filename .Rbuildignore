@@ -2,6 +2,8 @@ Rplots.pdf
 devtests
 build
 tmp
+initial_demo.R
+initial_functions.R
 divnet.Rcheck
 .git
 .settings
