@@ -1,4 +1,5 @@
-dis.beta <- function(metaweb.array,eta=2,framework=c('RLC','Tu'),type=c('P','L','Pi')){
+dis.beta <- function(g.list,groups,eta=2,framework=c('RLC','Tu'),type=c('P','L','Pi')){
+  metaweb.array <- metaweb.params(g.list,groups)
   N <- ncol( metaweb.array$P.mat)
   dis <- matrix(NA, N, N)
   

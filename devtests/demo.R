@@ -9,12 +9,14 @@ set.seed(1)
 n=57 #number of nodes of each graph, of course, we could have chosen a value for each graph
 C=0.1  #connectance of each graph
 
+groups <- rep(-1,n)
+groups[1:19]=1
+groups[20:38]=2
+groups[39:57]=3
+
 for(i in 1:n.graph){
   graph.loc=erdos.renyi.game(n,type = 'gnp',p.or.m = C,directed = T)
   V(graph.loc)$name=as.character(1:n)
-  V(graph.loc)$id[1:19]=1
-  V(graph.loc)$id[20:38]=2
-  V(graph.loc)$id[39:57]=3
   graph.list=c(graph.list,list(graph.loc))
 }
 names(graph.list)=LETTERS[1:10]
@@ -22,27 +24,29 @@ names(graph.list)=LETTERS[1:10]
 source("../R/get.metaweb.R")
 g.metaweb <- get.metaweb(graph.list)
 
+source("../R/utils.R")
 #get the metaweb array
-meta.array <- metaweb(graph.list)
+meta.array <- metaweb(graph.list, groups)
 
+source("../R/div.partition.R")
 #diversity index
-ABG_decomp_eta(meta.array,eta = 1,framework = 'RLC',type = 'P')
-ABG_decomp_eta(meta.array,eta = 1,framework = 'RLC',type = 'L')
-ABG_decomp_eta(meta.array,eta = 1,framework = 'RLC',type = 'Pi')  #same value due to the fact that we have an equal proportion of ids...
+div.partition(graph.list, groups, eta=1, framework = 'RLC',type = 'P')
+div.partition(graph.list, groups, eta=1, framework = 'RLC',type = 'L')
+div.partition(graph.list, groups, eta=1, framework = 'RLC',type = 'Pi')  #same value due to the fact that we have an equal proportion of ids...
 
-ABG_decomp_eta(meta.array,eta = 1,framework = 'Tu',type = 'P')
-ABG_decomp_eta(meta.array,eta = 1,framework = 'Tu',type = 'L')
-ABG_decomp_eta(meta.array,eta = 1,framework = 'Tu',type = 'Pi')  #same value due to the fact that we have an equal proportion of ids...
+div.partition(graph.list, groups, eta=1, framework = 'Tu',type = 'P')
+div.partition(graph.list, groups, eta=1, framework = 'Tu',type = 'L')
+div.partition(graph.list, groups, eta=1, framework = 'Tu',type = 'Pi')  #same value due to the fact that we have an equal proportion of ids...
 
 #dissimilarity matrix
 
-Beta_dis_eta(metaweb.array = meta.array,eta=1,framework = 'RLC',type = 'P')
-Beta_dis_eta(metaweb.array = meta.array,eta=1,framework = 'RLC',type = 'L')
-Beta_dis_eta(metaweb.array = meta.array,eta=1,framework = 'RLC',type = 'Pi')
+dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'P')
+dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'L')
+dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'Pi')
 
-Beta_dis_eta(metaweb.array = meta.array,eta=1,framework = 'RLC',type = 'P')
-Beta_dis_eta(metaweb.array = meta.array,eta=1,framework = 'RLC',type = 'L')
-Beta_dis_eta(metaweb.array = meta.array,eta=1,framework = 'RLC',type = 'Pi')
+dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'P')
+dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'L')
+dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'Pi')
 
 
 

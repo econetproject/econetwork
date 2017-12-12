@@ -2,7 +2,7 @@
 ## BUG here for q==l? self-loop allowed?
 ##
 ##
-getSBMparams <- function(g, groups){ # groups[i] for V(g)[i]
+sbm.params <- function(g, groups){ # groups[i] for V(g)[i]
     groups.id <- unique(groups)
     Q <- length(groups.id)
     l.mat <- matrix(0,Q,Q)
@@ -46,7 +46,7 @@ metaweb.params <- function(g.list, groups, prior.metaweb=FALSE){
     dimnames(L.array)[[3]] <- g.id
     
     SBMparams <- lapply(g.list, function(g){
-        getSBMparams(g, groups[V(g)$name])
+        sbm.params(g, groups[V(g)$name])
     })
     alpha_list <- lapply(SBMparams, function(p) p$alpha)
     L_list <- lapply(SBMparams, function(p) p$l)
@@ -67,8 +67,8 @@ metaweb.params <- function(g.list, groups, prior.metaweb=FALSE){
     }
     else {
         g.metaweb <- get.metaweb(g.list)
-        Pi.metaweb <- getSBMparams(get.metaweb, groups[V(g.metaweb)$name])
-### FAUX Pi.metaweb <- getSBMparams_Pi(g.metaweb)
+        Pi.metaweb <- sbm.params(get.metaweb, groups[V(g.metaweb)$name])
+### FAUX Pi.metaweb <- sbm.params_Pi(g.metaweb)
         Pi.array.metaweb <- array(rep(Pi.metaweb, length(g.list)), dim = c(Q,Q,length(g.list)))
         dimnames(Pi.array.metaweb)[[1]] <- groups.id
         dimnames(Pi.array.metaweb)[[2]] <- groups.id 
