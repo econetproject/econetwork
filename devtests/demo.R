@@ -1,7 +1,3 @@
-#####Demo of the functions of the Sunyata package######
-################################
-source("../R/initial_functions.R")
-
 library(igraph)
 library(betalink)
 
@@ -13,7 +9,6 @@ set.seed(1)
 n=57 #number of nodes of each graph, of course, we could have chosen a value for each graph
 C=0.1  #connectance of each graph
 
-
 for(i in 1:n.graph){
   graph.loc=erdos.renyi.game(n,type = 'gnp',p.or.m = C,directed = T)
   V(graph.loc)$name=as.character(1:n)
@@ -22,16 +17,13 @@ for(i in 1:n.graph){
   V(graph.loc)$id[39:57]=3
   graph.list=c(graph.list,list(graph.loc))
 }
-
 names(graph.list)=LETTERS[1:10]
 
-adj.list=get.adjacency.list(graph.list)
-get.graph.list(adj.list)
-
-meta.bin=build.binary.metaweb(adj.list)
+source("../R/get.metaweb.R")
+g.metaweb <- get.metaweb(graph.list)
 
 #get the metaweb array
-meta.array=metaweb(graph.list)
+meta.array <- metaweb(graph.list)
 
 #diversity index
 ABG_decomp_eta(meta.array,eta = 1,framework = 'RLC',type = 'P')
