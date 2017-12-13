@@ -4,24 +4,17 @@
 Computation of the dissimilairty matrix (pairwise beta-diversity) for a set of network
 }
 \description{
-Computation of the dissimilarity matrix for a set of network. Each value is of the matrix is 
-Estimation of dynamic stockastic block models for different number of groups.
-Each model combines a stochastic block model (SBM) for its static part with independent Markov chains for the evolution of the nodes groups through time.  
+Computation of the dissimilarity matrix for a set of network. Each value of the matrix is the pairwise beta-diversity, computed using Hill numbers (Renyi entropy).
 }
 \usage{
-select.dynsbm(Y, present=NULL, Qmin, Qmax,
-			edge.type=c("binary","discrete","continuous"), K=-1,
-			directed=FALSE, self.loop=FALSE,
-			nb.cores=1,
-			iter.max=20, nstart=25, perturbation.rate=0.2,
-			plot=TRUE)
+dis.beta <- function(g.list,groups,eta=2,framework=c('RLC','Tu'),type=c('P','L','Pi'))
 }
 \arguments{
-  \item{Y}{An object of class \code{array} of dimension (T x N x N) containing T adjacency matrices of size (N x N), where N is the number of nodes in the network and T is the number of time points.}
-  \item{present}{'NULL' or an object of class \code{matrix} of size (N x T)
-    containing the presence/absence (coded with 1/0 respectively) of
-    each N nodes at each of the T time points. When set to 'NULL', this object is deduced from \code{Y} (see the "Details" section). Any node must be present at least once among the time points.}
-  \item{Qmin}{Minimum number of groups >1.}
+  \item{g.list}{A list of graph of class \code{igraph} with labelled vertices.}
+  \item{groups}{An object of class \code{matrix} of size (N x 2), where  N is the number of species in the metaweb. The first column of this matrix contains the names
+  of the species present in the metaweb whereas the second column contains the group of the species present in the metaweb. The default value is a matrix that contains two identical columns :
+      the names of the species in the metaweb}
+  \item{eta}{The order of the Hill number (also knwon as Renyi entropy) used to compute the beta-diversity}
   \item{Qmax}{Maximum number of groups.}
   \item{edge.type}{Type of adjacency matrices. This should be (an unambiguous abbreviation of) one of \code{binary}, \code{discrete} or \code{continuous}. 
   See the "Details" section.}
