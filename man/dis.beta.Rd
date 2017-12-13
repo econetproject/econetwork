@@ -1,9 +1,10 @@
-\name{select.dynsbm}
-\alias{select.dynsbm}
+\name{dis.beta}
+\alias{dis.beta}
 \title{
-Dynamic stochastic block model estimation for different number of groups.
+Computation of the dissimilairty matrix (pairwise beta-diversity) for a set of network
 }
 \description{
+Computation of the dissimilarity matrix for a set of network. Each value is of the matrix is 
 Estimation of dynamic stockastic block models for different number of groups.
 Each model combines a stochastic block model (SBM) for its static part with independent Markov chains for the evolution of the nodes groups through time.  
 }
