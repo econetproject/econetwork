@@ -1,5 +1,4 @@
 library(igraph)
-library(betalink)
 library(divnet)
 
 #We generate a set of Erdos-Renyi graphs and gives ids.
@@ -26,8 +25,11 @@ names(graph.list)=LETTERS[1:10]
 ##source("../R/get.metaweb.R")
 g.metaweb <- get.metaweb(graph.list)
 
-##source("../R/utils.R")
-meta.array <- metaweb.params(graph.list, groups)
+TEST <- FALSE
+if(TEST){
+    source("../R/utils.R")
+    meta.array <- metaweb.params(graph.list, groups)
+}
 
 ##source("../R/div.partition.R")
 div.partition(graph.list, groups, eta=1, framework = 'RLC',type = 'P')
