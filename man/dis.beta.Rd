@@ -7,7 +7,7 @@ Computation of the dissimilairty matrix (pairwise beta-diversity) for a set of n
 Computation of the dissimilarity matrix for a set of network. Each value of the matrix is the pairwise beta-diversity, computed using Hill numbers (Renyi entropy).
 }
 \usage{
-dis.beta <- function(g.list,groups,eta=2,framework=c('RLC','Tu'),type=c('P','L','Pi'))
+dis.beta(g.list, groups, eta=2, framework=c('RLC','Tu'), type=c('P','L','Pi'))
 }
 \arguments{
   \item{g.list}{A list of graph of class \code{igraph} with labelled vertices.}

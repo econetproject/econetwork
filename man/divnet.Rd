@@ -1,31 +1,30 @@
-\name{dynsbm-package}
-\alias{dynsbm-package}
-\alias{dynsbm}
+\name{divnet-package}
+\alias{divnet-package}
+\alias{divnet}
 \docType{package}
 \title{
-Dynamic stochastic block model estimation
+Diversity indices for networks
 }
 \description{
-Estimation of a model that combines a stochastic block model (SBM) for its static part with independent Markov chains for the evolution of the nodes groups through time
+Bla bla bla bla bla blab  bla
 }
 \details{
-dynsbm is a R implementation of a model that combines a stochastic block model (SBM) for its static part with independent Markov chains for the evolution of the nodes groups through time. It deals with binary or weighted dynamic/temporal/evolving networks (with discrete or continuous edges).
+divnet is bla bla  bla.
 }
 \author{
-Authors: Catherine Matias, Vincent Miele
+Authors: Stéphane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
   
-Maintainer: Vincent Miele <vincent.miele@univ-lyon1.fr>
+Maintainer: Wilfried Thuiller <wilfried.thuiller@univ-grenoble-alpes.fr>
 }
 \references{
 Catherine Matias and Vincent Miele, \emph{Statistical clustering of temporal networks through a dynamic stochastic block model}, Journal of the Royal Statistical Society: Series B (2016)
 http://dx.doi.org/10.1111/rssb.12200
 http://arxiv.org/abs/1506.07464
-
-Vincent Miele and Catherine Matias, \emph{Revealing the hidden structure of dynamic ecological networks}, preprint
-https://arxiv.org/abs/1701.01355
 }
 \keyword{ package }
-\keyword{ cluster }
+\keyword{ ecology }
+\keyword{ diversity }
+\keyword{ network }
 %\seealso{
 %Optional links to other man pages, e.g. \code{\link[<pkg>:<pkg>-package]{<pkg>}}
 %}

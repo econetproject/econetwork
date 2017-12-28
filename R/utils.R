@@ -27,7 +27,7 @@ sbm.params <- function(g, groups){ # groups[i] for V(g)[i]
                 C=sum(adj.mat)/(length(V(g))*length(V(g)))))
 }
 
-## il faut que groups soit un tableau avec des names qui sont les sommets du metaweb 
+## WARNING il faut que groups soit un tableau avec des names qui sont les sommets du metaweb 
 metaweb.params <- function(g.list, groups, prior.metaweb=FALSE){
     groups.id <- unique(groups)
     if(length(names(g.list))){

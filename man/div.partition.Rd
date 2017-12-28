@@ -1,19 +1,13 @@
-\name{select.dynsbm}
-\alias{select.dynsbm}
+\name{div.partition}
+\alias{div.partition}
 \title{
-Dynamic stochastic block model estimation for different number of groups.
+Bla blkabla bla bla
 }
 \description{
-Estimation of dynamic stockastic block models for different number of groups.
-Each model combines a stochastic block model (SBM) for its static part with independent Markov chains for the evolution of the nodes groups through time.  
+  balb abalba la akabala aloabakaha
 }
 \usage{
-select.dynsbm(Y, present=NULL, Qmin, Qmax,
-			edge.type=c("binary","discrete","continuous"), K=-1,
-			directed=FALSE, self.loop=FALSE,
-			nb.cores=1,
-			iter.max=20, nstart=25, perturbation.rate=0.2,
-			plot=TRUE)
+div.partition(graph.list, groups, eta=1, framework=c('RLC','Tu'), type=c('P','L','Pi'))
 }
 \arguments{
   \item{Y}{An object of class \code{array} of dimension (T x N x N) containing T adjacency matrices of size (N x N), where N is the number of nodes in the network and T is the number of time points.}
