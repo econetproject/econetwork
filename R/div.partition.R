@@ -1,4 +1,7 @@
 div.partition <- function(g.list,groups,eta=2,framework=c('RLC','Tu'),type=c('P','L','Pi')){
+    if(is.null(names(groups))){
+        stop("groups must have names (names(groups) is NULL)")
+    }
   metaweb.array <- metaweb.params(g.list,groups)
    if(framework=='RLC'){
     if(type=='P'){

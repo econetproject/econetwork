@@ -10,48 +10,19 @@ Bla blkabla bla bla
 div.partition(graph.list, groups, eta=1, framework=c('RLC','Tu'), type=c('P','L','Pi'))
 }
 \arguments{
-  \item{Y}{An object of class \code{array} of dimension (T x N x N) containing T adjacency matrices of size (N x N), where N is the number of nodes in the network and T is the number of time points.}
-  \item{present}{'NULL' or an object of class \code{matrix} of size (N x T)
-    containing the presence/absence (coded with 1/0 respectively) of
-    each N nodes at each of the T time points. When set to 'NULL', this object is deduced from \code{Y} (see the "Details" section). Any node must be present at least once among the time points.}
-  \item{Qmin}{Minimum number of groups >1.}
-  \item{Qmax}{Maximum number of groups.}
-  \item{edge.type}{Type of adjacency matrices. This should be (an unambiguous abbreviation of) one of \code{binary}, \code{discrete} or \code{continuous}. 
-  See the "Details" section.}
-  \item{K}{Only if \code{edge.type=="discrete"}. Number of non-zero discrete values (i.e. in {1,..,K}).} 
-  \item{directed}{Whether to consider the network is directed (and
-    therefore whether \code{Y} is asymmetric).}
-  \item{self.loop}{Whether to allow and consider self-loops (edges from one node
-    to the same node) in the estimation steps.}   
-  \item{nb.cores}{Number of cores to use, i.e. how many child
-    processes and how many threads will be run simultaneously during the
-    initialization and the estimation steps respectively.}
-  \item{iter.max}{Maximal number of algorithm iterations.}
-  \item{nstart}{Number of starting points for the iterative estimation algorithm.  See the "Details" section.}
-  \item{perturbation.rate}{Rate of perturbation (in [0,1], see \code{nstart}) for the iterative estimation algorithm. This rate is
-    the fraction of nodes for which its group is randomly shuffled.}
-  \item{plot}{Display a plot with the loglikelihood and the ICL criteria if \code{edge.type=="binary"/"continuous"}. See the "Details" section.} 
+  \item{graph.list}{A \code{list} of graph objects of class
+    \code{igraph}.}
+  \item{groups}{A named vector of integers (from \code{1:k}) indicating the group to
+    which each node belongs to. The length of \code{groups} must
+    correspond to the number of different nodes present in
+    \code{graph.list}. The names \code{names(groups)} must
+    correspond to the nodes names in \code{graph.list}.}
+  \item{eta}{eta}
+  \item{framework}{Bla bla bla. This should be one of 'RLC' or 'Tu'}
+  \item{type}{Bla bla bla. This should be one of 'P','L' or'Pi'}
 }
 \details{
-  This function deals with binary or weighted dynamic/temporal/evolving networks (with discrete or continuous edges).
-  The adjacency matrices must be coded with 0/1 in the \code{binary} case, 
-  with 0/y where y belongs to the set {1,..,K} in the \code{discrete} case 
-  or with 0/y where y is numeric, must be positive and is supposed to fit a gaussian mixture in
-  the \code{continuous} case.
-
-  Presence/absence information allows to model node's arrival or
-  departure, birth or death, or simply enables to specify missing data
-  (as absent nodes). If this information is missing (NULL), the presence/absence is deduced automatically from \code{Y} 
-    by searching for nodes that do not participate in any edges (lines/columns of O in \code{Y}) and declaring them as absent. 
-  This function does not support the existence of nodes that are never present (error message in this case).  
-  
-  The estimation algorithm is iterative and rely on a starting point. Therefore, it is possible to start the algorithm many times with 'nstart' starting points. 
-  The first starting point is obtained with an ad-hoc use of the \code{kmeans} function. 
-  The follwing starting point are obtained by perturbating the first one (see \code{perturbation.rate}).
-  The greater \code{nstart}, the more accurate the results.
-  
-  To select the best number of groups, the "elbow" method consists in finding the point where the slope of the loglikelihood is decreasing (i.e. the loglikelihood is reaching a plateau).
-  If \code{edge.type=="binary"}, the ICL criteria (plotted in red) has to be used : the best number of nodes is supposed to maximize the ICL criteria. 
+  This function bla bla bla 
 }
 \value{
 Returns a list of \code{dynsbm} objects. Each object of class \code{dynsbm} is a \code{list} with the following components:
