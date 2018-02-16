@@ -1,6 +1,6 @@
 ##
 ## BUG here for q==l? self-loop allowed?
-##
+##=> I think so. I didn't see a bug for this case
 ##
 sbm.params <- function(g, groups){ # groups[i] for V(g)[i]
     groups.id <- unique(groups)
@@ -67,8 +67,7 @@ metaweb.params <- function(g.list, groups, prior.metaweb=FALSE){
     }
     else {
         g.metaweb <- get.metaweb(g.list)
-        Pi.metaweb <- sbm.params(get.metaweb, groups[V(g.metaweb)$name])
-### FAUX Pi.metaweb <- sbm.params_Pi(g.metaweb)
+        Pi.metaweb <- sbm.params(g.metaweb,groups)$pi
         Pi.array.metaweb <- array(rep(Pi.metaweb, length(g.list)), dim = c(Q,Q,length(g.list)))
         dimnames(Pi.array.metaweb)[[1]] <- groups.id
         dimnames(Pi.array.metaweb)[[2]] <- groups.id 
