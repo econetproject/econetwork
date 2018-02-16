@@ -1,10 +1,10 @@
 \name{get.metaweb}
 \alias{get.metaweb}
 \title{
-Get metaweb bla bla bla
+Get metaweb 
 }
 \description{
-Computation of bla bla bla
+Computation of the binary metaweb from a list of graph
 }
 \usage{
 get.metaweb(graph.list)
@@ -13,17 +13,13 @@ get.metaweb(graph.list)
   \item{graph.list}{A \code{list} of graph objects of class \code{igraph}.}
 }
 \details{
-  This function  bla bla bla
+  This function computes the metaweb from a list of graph. It computes the union (in the sense of graph theory) of the set of graphs.
 }
 \value{
 \code{get.metaweb} returns an object of class \code{igraph}.
 }
 \references{
-Catherine Matias and Vincent Miele, \emph{Statistical clustering of temporal networks through a dynamic stochastic block model}, Journal of the Royal Statistical Society: Series B (2016)
-http://dx.doi.org/10.1111/rssb.12200
-http://arxiv.org/abs/1506.07464
 
-Poisot et al. 2011
 }
 \author{
 Authors: Stéphane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
