@@ -18,10 +18,6 @@ div.partition <- function(g.list,groups,eta=2,framework=c('RLC','Tu'),type=c('P'
       beta=as.numeric(norm_meta_beta(meta.P,qs = eta)[7])
       gamma=as.numeric(meta_gamma(meta.P,qs=eta)[7])
       
-      raw.sub.beta=raw_sub_beta(meta.P,qs=eta)
-      distinc.beta=unlist(raw.sub.beta[,7])
-      names(distinc.beta)=as.matrix(raw.sub.beta[6])
-      
       return(list(mAlpha=mAlpha,Alphas=alphas.vec,distinctiveness.beta=distinc.beta,Beta=beta,Gamma=gamma))
       
     }
@@ -45,10 +41,6 @@ div.partition <- function(g.list,groups,eta=2,framework=c('RLC','Tu'),type=c('P'
       beta=as.numeric(norm_meta_beta(meta.L,qs = eta)[7])
       gamma=as.numeric(meta_gamma(meta.L,qs=eta)[7])
       
-      raw.sub.beta=raw_sub_beta(meta.L,qs=eta)
-      distinc.beta=unlist(raw.sub.beta[,7])
-      names(distinc.beta)=as.matrix(raw.sub.beta[6])
-      
       return(list(mAlpha=mAlpha,Alphas=alphas.vec,distinctiveness.beta=distinc.beta,Beta=beta,Gamma=gamma))
     }
     if(type=='Pi'){
@@ -71,10 +63,6 @@ div.partition <- function(g.list,groups,eta=2,framework=c('RLC','Tu'),type=c('P'
       names(alphas.vec)=alphas[,1]
       beta=as.numeric(norm_meta_beta(meta_Pi,qs = eta)[7])
       gamma=as.numeric(meta_gamma(meta_Pi,qs=eta)[7])
-      
-      raw.sub.beta=raw_sub_beta(meta_Pi,qs=eta)
-      distinc.beta=unlist(raw.sub.beta[,7])
-      names(distinc.beta)=as.matrix(raw.sub.beta[6])
       
       return(list(mAlpha=mAlpha,Alphas=alphas.vec,distinctiveness.beta=distinc.beta,Beta=beta,Gamma=gamma))
     }
