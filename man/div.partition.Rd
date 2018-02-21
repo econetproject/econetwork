@@ -1,10 +1,10 @@
 \name{div.partition}
 \alias{div.partition}
 \title{
-Bla blkabla bla bla
+Partitionning network diversity in alpha, beta and gamma diversity
 }
 \description{
-  balb abalba la akabala aloabakaha
+ This function computes alpha, beta and gamma diversity of a list of networks. It measures either group, links, or probability of links diversity. 
 }
 \usage{
 div.partition(graph.list, groups, eta=1, framework=c('RLC','Tu'), type=c('P','L','Pi'))
@@ -12,67 +12,47 @@ div.partition(graph.list, groups, eta=1, framework=c('RLC','Tu'), type=c('P','L'
 \arguments{
   \item{graph.list}{A \code{list} of graph objects of class
     \code{igraph}.}
-  \item{groups}{A named vector of integers (from \code{1:k}) indicating the group to
-    which each node belongs to. The length of \code{groups} must
-    correspond to the number of different nodes present in
-    \code{graph.list}. The names \code{names(groups)} must
+  \item{groups}{A named vector of class \code{character}  indicating the group to
+    which each node belongs to. The length of \code{groups} mustc correspond to the number of different nodes present in \code{graph.list}. The names \code{names(groups)} must
     correspond to the nodes names in \code{graph.list}.}
-  \item{eta}{eta}
-  \item{framework}{Bla bla bla. This should be one of 'RLC' or 'Tu'}
-  \item{type}{Bla bla bla. This should be one of 'P','L' or'Pi'}
+  \item{eta}{A positive number that controls the weight given to abundant groups/links. Default value is 1.}
+  \item{framework}{The framework used to partitionate diversity, either Reeve Leinster Cobbold ('RLC') or Tuomisto ('Tu')}
+  \item{type}{The type of diversity to measure and partitionate. It can be groups diversity ('P'), link diversity ('L') or probability of link diversity ('Pi').}
 }
 \details{
-  This function bla bla bla 
+ 
 }
 \value{
-Returns a list of \code{dynsbm} objects. Each object of class \code{dynsbm} is a \code{list} with the following components:
-\item{transition}{The Markov chain transition \code{matrix} of size (Q x Q).}
-\item{membership}{An object of class \code{matrix} of size (N x T)
-  containing the group membership estimated by MAP (>0, =0 for absent nodes).}
-\item{beta}{An object of class \code{matrix} of size (T x Q x Q) containing
-  the sparsity parameters of the model.}
-\item{gamma}{Only if \code{edge.type=="discrete"}. An object of class \code{matrix} of size (T x Q x Q x K) containing
-  the model parameters.}
-\item{mu/sigma}{Only \code{edge.type=="continuous"}An object of class \code{matrix} of size (T x Q x Q)
-  and a vector containing the model parameters.}
-\item{loglikelihood}{Completed data log-likelihood.}
-\item{iter}{Number of used algorithm iterations.}
-\item{directed}{Specifies whether the model is build for directed networks.}
-\item{self.loop}{Specifies whether the model allows self-loops.}
+Returns a \code{list} the following components:
+\item{mAlpha}{The mean value of alpha-diversity accross all networks.}
+\item{Alphas}{A vector of \class{numeric} containing the local alpha-diversities (i.e. the alpha-diversity value for each network).}
+\item{Beta}{The value of the overall beta-diversity}
+\item{Gamma}{The value of the gamma-diversity}
 }
 \references{
-Catherine Matias and Vincent Miele, \emph{Statistical clustering of temporal networks through a dynamic stochastic block model}, Journal of the Royal Statistical Society: Series B (2016)
-http://dx.doi.org/10.1111/rssb.12200
-http://arxiv.org/abs/1506.07464
 
-Vincent Miele and Catherine Matias, \emph{Revealing the hidden structure of dynamic ecological networks}, preprint
-https://arxiv.org/abs/1701.01355
 }
 \author{
-Authors: Catherine Matias, Vincent Miele
+Authors: Stéphane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
   
-Maintainer: Vincent Miele <vincent.miele@univ-lyon1.fr>
+Maintainer:Marc Ohlmann <marc.ohlmann@univ-grenoble-alpes.fr>
+
 }
 \examples{
-data(simdataT5Q4N40binary)
-
-## estimation for Q=1..6 groups
-list.dynsbm <- select.dynsbm(simdataT5Q4N40binary, 
-				Qmin=1, Qmax=6, edge.type="binary", nstart=1)
-				
-\dontrun{
-## better to use nstart>1 starting points
-## but estimation can take 1-2 minutes
-list.dynsbm <- select.dynsbm(simdataT5Q4N40binary, 
-				Qmin=1, Qmax=6, edge.type="binary", nstart=25)
+#Generating a set of Erdos-Renyi graphs and give name to nodes.
+n.graph=10
+graph.list=c()
+n=57 #number of nodes of each graph
+C=0.1  #connectance of each graph
+for(i in 1:n.graph){
+  graph.loc=erdos.renyi.game(n,type = 'gnp',p.or.m = C,directed = T)
+  V(graph.loc)$name=as.character(1:57)
+  graph.list=c(graph.list,list(graph.loc))
 }
 
-## selection of Q=4
-dynsbm <- list.dynsbm[[4]]
+g.list=graph.list
+groups=c(rep("a",23),rep("b",34)) #vector that gives the group of each node
+names(groups)=as.character(1:57)
 
-## plotting intra/inter connectivity patterns
-connectivity.plot(dynsbm, simdataT5Q4N40binary)
-
-## plotting switches between groups
-alluvial.plot(dynsbm)
+div.partition(graph.list,groups,framework ='RLC',type = 'L') #measure of link diversity
 }
