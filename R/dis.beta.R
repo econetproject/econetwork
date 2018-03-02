@@ -1,4 +1,4 @@
-dis.beta <- function(g.list,groups,eta=2,framework=c('RLC','Tu'),type=c('P','L','Pi')){
+dis.beta <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P','L','Pi')){
      if(is.null(names(groups))){
         stop("groups must have names (names(groups) is NULL)")
     }
