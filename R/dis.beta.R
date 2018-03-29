@@ -28,7 +28,6 @@ dis.beta <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P','L',
       }
       spxp=meta.links
       for (i in 2:N) {
-        print(i)
         for (j in 1:(i-1)) {
           spxp.dummy <- spxp[,c(i,j)]
           if(sum(rowSums(spxp.dummy)>0)<nrow(spxp.dummy)){
