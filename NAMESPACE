@@ -1,5 +1,6 @@
 import(igraph)
 import(rdiversity)
+import(Matrix.utils)
 export(get.metaweb)
 export(div.partition)
 export(dis.beta)
