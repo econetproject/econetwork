@@ -48,12 +48,12 @@ dis.beta <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P','L',
       if(length(c(which(is.na(rowSums(meta.Pi))),which(rowSums(meta.Pi)==0)))>0){
         meta.Pi=meta.Pi[-c(which(is.na(rowSums(meta.Pi))),which(rowSums(meta.Pi)==0)),]
       }
-      spxp=meta.Pi
+    spxp=meta.Pi
       for (i in 2:N) {
         for (j in 1:(i-1)) {
           spxp.dummy <- spxp[,c(i,j)]
-          
-          if(length(which(is.na(rowSums( spxp.dummy))))>0){spxp.dummy=spxp.dummy[-which(is.na(rowSums( spxp.dummy))),]}
+          if(length(c(which(is.na(rowSums( spxp.dummy))),which(rowSums(spxp.dummy)==0)))>0){
+            spxp.dummy=spxp.dummy[-c(which(is.na(rowSums( spxp.dummy))),which(rowSums(spxp.dummy)==0)),]}
           spxp.dummy= spxp.dummy/sum(spxp.dummy)
           spxp.meta=metacommunity(spxp.dummy)
           dis[i, j] <- dis[j, i] <- as.numeric(norm_meta_beta(spxp.meta,qs = eta)[7])
