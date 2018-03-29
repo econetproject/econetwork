@@ -3,7 +3,7 @@ Type: Package
 Title: Bla bla bla
 Version: 0.1
 Date: 2018-01-01
-Author: Stéphane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
+Author: Stephane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
 Maintainer: Wilfried Thuiller <wilfried.thuiller@univ-grenoble-alpes.fr>
 Description: Bla bla bla developed in the paper Ohlmann et al <doi:xxxx>
 Imports: igraph, rdiversity 
