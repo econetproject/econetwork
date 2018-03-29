@@ -77,13 +77,17 @@ dis.beta <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P','L',
       meta.links <- aperm(metaweb.array$L.array,c(2,1,3))  
       dim(meta.links) <- c(n.groups*n.groups,ncol(metaweb.array$P.mat)) 
       colnames(meta.links) <- colnames(metaweb.array$P.mat) 
-      if(sum(rowSums(meta.links)>0)==ncol(meta.links)){
+      if(sum(rowSums(meta.links)>0)<nrow(meta.links)){
         meta.links=meta.links[-which(rowSums(meta.links)==0),]
       }
       spxp=t(meta.links)
       for (i in 2:N) {
         for (j in 1:(i-1)) {
-          spxp.dummy <- spxp[c(i,j), ]
+         spxp.dummy <- spxp[,c(i,j)]
+          if(sum(rowSums(spxp.dummy)>0)<nrow(spxp.dummy)){
+            spxp.dummy=spxp.dummy[-which(rowSums(spxp.dummy)==0),]
+          }
+          spxp.dummy= spxp.dummy/sum(spxp.dummy)
           res <- abgDecompQ(as.matrix(spxp.dummy), q = eta, check = FALSE)$Beta
           dis[i, j] <- dis[j, i] <- res
         }
@@ -94,16 +98,18 @@ dis.beta <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P','L',
       meta.Pi <- aperm(metaweb.array$Pi.array,c(2,1,3))  
       dim(meta.Pi) <- c(n.groups*n.groups,ncol(metaweb.array$P.mat)) 
       colnames(meta.Pi) <- colnames(metaweb.array$P.mat) 
-      if(length(c(which(is.na(rowSums(meta.Pi))),which(rowSums(meta.Pi)==0)))>0){
+     if(length(c(which(is.na(rowSums(meta.Pi))),which(rowSums(meta.Pi)==0)))>0){
         meta.Pi=meta.Pi[-c(which(is.na(rowSums(meta.Pi))),which(rowSums(meta.Pi)==0)),]
       }
       spxp=t(meta.Pi)
       for (i in 2:N) {
         for (j in 1:(i-1)) {
-          spxp.dummy <- spxp[c(i,j), ]
-          spxp.dummy=spxp.dummy[,-which(is.na(colSums(spxp.dummy)))]
-          res <- abgDecompQ(as.matrix(spxp.dummy), q = eta, check = FALSE)$Beta
-          dis[i, j] <- dis[j, i] <- res
+        spxp.dummy <- spxp[c(i,j), ]
+        if(length(c(which(is.na(rowSums( spxp.dummy))),which(rowSums(spxp.dummy)==0)))>0){
+            spxp.dummy=spxp.dummy[-c(which(is.na(rowSums( spxp.dummy))),which(rowSums(spxp.dummy)==0)),]}
+         spxp.dummy= spxp.dummy/sum(spxp.dummy)
+         res <- abgDecompQ(as.matrix(spxp.dummy), q = eta, check = FALSE)$Beta
+         dis[i, j] <- dis[j, i] <- res
         }
       }
     }
