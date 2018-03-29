@@ -69,8 +69,8 @@ metaweb.params <- function(g.list, groups, prior.metaweb=FALSE){
         
         for(i in 1:length(g.list)){
             P.mat[names(alpha_list[[i]]),i] <- alpha_list[[i]]
-            L.array[rownames(L_list[[i]]),colnames(L_list[[i]]),i] <- L_list[[i]]
-            Pi.array.NA[rownames(Pi_list[[i]]), colnames(Pi_list[[i]]), i] <- Pi_list[[i]]
+            L.array[rownames(L_list[[i]]),colnames(L_list[[i]]),i] <- as.matrix(L_list[[i]][rownames(L_list[[i]]),colnames(L_list[[i]])])
+            Pi.array.NA[rownames(Pi_list[[i]]), colnames(Pi_list[[i]]), i] <- as.matrix(Pi_list[[i]][rownames(Pi_list[[i]]),colnames(Pi_list[[i]])])
         }
         return(list(P.mat=P.mat, L.array=L.array, Pi.array=Pi.array.NA))
     }
