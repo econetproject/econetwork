@@ -3,24 +3,33 @@
 ##=> I think so. I didn't see a bug for this case
 ##
 sbm.params <- function(g, groups){ # groups[i] for V(g)[i]
-    groups.id <- unique(groups)
-    Q <- length(groups.id)
-    l.mat <- matrix(0,Q,Q)
-    pi.mat <- matrix(0,Q,Q)
-    alpha.vec <- table(groups)
-    adj.mat <- get.adjacency(g)
-    for(q in 1:Q){
-      ind.q <- which(groups==groups.id[q])
-      for(l in 1:Q){
-        ind.l <- which(groups==groups.id[l])
-        l.mat[q,l] <- sum(adj.mat[ind.q,ind.l])
-        pi.mat[q,l] <- sum(adj.mat[ind.q,ind.l])/(length(ind.q)*length(ind.l))
-      }
-    }
-    colnames(l.mat) <- groups.id
-    rownames(l.mat) <- groups.id
-    colnames(pi.mat) <- groups.id
-    rownames(pi.mat) <- groups.id
+ 
+ #old version => slow
+ #   groups.id <- unique(groups)
+ #   Q <- length(groups.id)
+ #   l.mat <- matrix(0,Q,Q)
+ #   pi.mat <- matrix(0,Q,Q)
+ #   alpha.vec <- table(groups)
+ #   adj.mat <- get.adjacency(g)
+ #   for(q in 1:Q){
+ #     ind.q <- which(groups==groups.id[q])
+ #     for(l in 1:Q){
+ #       ind.l <- which(groups==groups.id[l])
+ #       l.mat[q,l] <- sum(adj.mat[ind.q,ind.l])
+ #       pi.mat[q,l] <- sum(adj.mat[ind.q,ind.l])/(length(ind.q)*length(ind.l))
+ #     }
+ #   }
+ #   colnames(l.mat) <- groups.id
+ #   rownames(l.mat) <- groups.id
+ #   colnames(pi.mat) <- groups.id
+ #   rownames(pi.mat) <- groups.id
+
+# new version=> using 'Matrix.utils'  (sparse matrix much faster when the number of groups is high)
+  alpha.vec <- table(groups)
+  adj.mat <- get.adjacency(g)
+  l.mat=aggregate.Matrix(t(aggregate.Matrix(adj.mat,groups,fun='sum')),groups,fun='sum')[names(alpha.vec),names(alpha.vec)]
+  pi.mat=l.mat/(alpha.vec%*%t(alpha.vec))
+    
     return(list(alpha=alpha.vec,
                 l=l.mat,
                 pi=pi.mat,
