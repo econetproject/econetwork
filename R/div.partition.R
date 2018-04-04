@@ -18,7 +18,7 @@ div.partition <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P'
       beta=as.numeric(norm_meta_beta(meta.P,qs = eta)[7])
       gamma=as.numeric(meta_gamma(meta.P,qs=eta)[7])
       
-      return(list(mAlpha=mAlpha,Alphas=alphas.vec,distinctiveness.beta=distinc.beta,Beta=beta,Gamma=gamma))
+      return(list(mAlpha=mAlpha,Alphas=alphas.vec,Beta=beta,Gamma=gamma))
       
     }
     if(type=='L'){
@@ -42,7 +42,7 @@ div.partition <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P'
       beta=as.numeric(norm_meta_beta(meta.L,qs = eta)[7])
       gamma=as.numeric(meta_gamma(meta.L,qs=eta)[7])
       
-      return(list(mAlpha=mAlpha,Alphas=alphas.vec,distinctiveness.beta=distinc.beta,Beta=beta,Gamma=gamma))
+      return(list(mAlpha=mAlpha,Alphas=alphas.vec,Beta=beta,Gamma=gamma))
     }
     if(type=='Pi'){
       n.groups=nrow(metaweb.array$P.mat)
@@ -63,7 +63,7 @@ div.partition <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P'
       beta=as.numeric(norm_meta_beta(meta_Pi,qs = eta)[7])
       gamma=as.numeric(meta_gamma(meta_Pi,qs=eta)[7])
       
-      return(list(mAlpha=mAlpha,Alphas=alphas.vec,distinctiveness.beta=distinc.beta,Beta=beta,Gamma=gamma))
+      return(list(mAlpha=mAlpha,Alphas=alphas.vec,Beta=beta,Gamma=gamma))
     }
   }
   if(framework=='Tu'){
