@@ -44,10 +44,7 @@ dis.beta <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P','L',
       meta.Pi <- aperm(metaweb.array$Pi.array,c(2,1,3))  
       dim(meta.Pi) <- c(n.groups*n.groups,ncol(metaweb.array$P.mat)) 
       colnames(meta.Pi) <- colnames(metaweb.array$P.mat) 
-      if(length(c(which(is.na(rowSums(meta.Pi))),which(rowSums(meta.Pi)==0)))>0){
-        meta.Pi=meta.Pi[-c(which(is.na(rowSums(meta.Pi))),which(rowSums(meta.Pi)==0)),]
-      }
-    spxp=meta.Pi
+      spxp=meta.Pi
       for (i in 2:N) {
         for (j in 1:(i-1)) {
           spxp.dummy <- spxp[,c(i,j)]
