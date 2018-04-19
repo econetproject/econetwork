@@ -1,4 +1,13 @@
 div.partition <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P','L','Pi')){
+      if(is.null(groups)){
+    groups=unique(unlist(lapply(g.list,FUN = function(g) V(g)$name)))
+    names(groups)=groups
+  }
+  
+  if(is.null(names(groups))){
+    stop("groups must have names (names(groups) is NULL)")
+  }
+    
     if(is.null(names(groups))){
         stop("groups must have names (names(groups) is NULL)")
     }
