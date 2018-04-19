@@ -3,28 +3,12 @@
 ##=> I think so. I didn't see a bug for this case
 ##
 sbm.params <- function(g, groups){ # groups[i] for V(g)[i]
- 
- #old version => slow
- #   groups.id <- unique(groups)
- #   Q <- length(groups.id)
- #   l.mat <- matrix(0,Q,Q)
- #   pi.mat <- matrix(0,Q,Q)
- #   alpha.vec <- table(groups)
- #   adj.mat <- get.adjacency(g)
- #   for(q in 1:Q){
- #     ind.q <- which(groups==groups.id[q])
- #     for(l in 1:Q){
- #       ind.l <- which(groups==groups.id[l])
- #       l.mat[q,l] <- sum(adj.mat[ind.q,ind.l])
- #       pi.mat[q,l] <- sum(adj.mat[ind.q,ind.l])/(length(ind.q)*length(ind.l))
- #     }
- #   }
- #   colnames(l.mat) <- groups.id
- #   rownames(l.mat) <- groups.id
- #   colnames(pi.mat) <- groups.id
- #   rownames(pi.mat) <- groups.id
-
-# new version=> using 'Matrix.utils'  (sparse matrix much faster when the number of groups is high)
+  
+   if(is.null(groups)){
+   groups=V(g)$name
+   names(groups)=V(g)$name
+ }
+  
   alpha.vec <- table(groups)
     if(is.null(E(g)$weight)){
     adj.mat <- get.adjacency(g)
