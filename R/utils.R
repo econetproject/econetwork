@@ -26,7 +26,11 @@ sbm.params <- function(g, groups){ # groups[i] for V(g)[i]
 
 # new version=> using 'Matrix.utils'  (sparse matrix much faster when the number of groups is high)
   alpha.vec <- table(groups)
-  adj.mat <- get.adjacency(g)
+    if(is.null(E(g)$weight)){
+    adj.mat <- get.adjacency(g)
+    }  else {
+    adj.mat <- get.adjacency(g,attr = "weight")
+    }
   l.mat<-as.matrix(aggregate.Matrix(t(as.matrix(aggregate.Matrix(adj.mat,groups,fun='sum'))),groups,fun='sum'))[names(alpha.vec),names(alpha.vec)]
   pi.mat<-l.mat/(alpha.vec%*%t(alpha.vec))
     
