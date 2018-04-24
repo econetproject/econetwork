@@ -1,4 +1,4 @@
-dis.beta <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P','L','Pi')){
+dis.beta <- function(g.list,groups=NULL,eta=1,framework=c('RLC','Tu'),type=c('P','L','Pi')){
    if(is.null(groups)){
     groups=unique(unlist(lapply(g.list,FUN = function(g) V(g)$name)))
     names(groups)=groups
