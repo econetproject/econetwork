@@ -105,7 +105,7 @@ dis.beta <- function(g.list,groups=NULL,eta=1,framework=c('RLC','Tu'),type=c('P'
       if(sum(rowSums(meta.links)>0)<nrow(meta.links)){
         meta.links=meta.links[-which(rowSums(meta.links)==0),]
       }
-      spxp=t(meta.links)
+      spxp=meta.links
       pb <- txtProgressBar(min = 0, max = N*(N-1)/2, style = 3)
       comp=0
       for (i in 2:N) {
