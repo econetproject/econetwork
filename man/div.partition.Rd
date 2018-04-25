@@ -25,7 +25,7 @@ div.partition(graph.list, groups, eta=1, framework=c('RLC','Tu'), type=c('P','L'
 \value{
 Returns a \code{list} the following components:
 \item{mAlpha}{The mean value of alpha-diversity accross all networks.}
-\item{Alphas}{A vector of \class{numeric} containing the local alpha-diversities (i.e. the alpha-diversity value for each network).}
+\item{Alphas}{A vector of \code{numeric} containing the local alpha-diversities (i.e. the alpha-diversity value for each network).}
 \item{Beta}{The value of the overall beta-diversity}
 \item{Gamma}{The value of the gamma-diversity}
 }
