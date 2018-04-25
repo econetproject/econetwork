@@ -1,5 +1,8 @@
 div.partition <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P','L','Pi')){
-      if(is.null(groups)){
+   if(sum(unlist(lapply(lapply(g.list,FUN = function(x) V(x)$name),is.null)))>0){
+    stop('nodes must have names (use V(g)$name)')
+  }
+   if(is.null(groups)){
     groups=unique(unlist(lapply(g.list,FUN = function(g) V(g)$name)))
     names(groups)=groups
   }
@@ -7,10 +10,9 @@ div.partition <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P'
   if(is.null(names(groups))){
     stop("groups must have names (names(groups) is NULL)")
   }
-    
-    if(is.null(names(groups))){
-        stop("groups must have names (names(groups) is NULL)")
-    }
+  if(prod(names(groups) %in% unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))))*prod(unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))) %in% names(groups))!=1){
+    stop("the names of groups vector do not match to the names of the metaweb")
+  }
   metaweb.array <- metaweb.params(g.list,groups)
    if(framework=='RLC'){
     if(type=='P'){
