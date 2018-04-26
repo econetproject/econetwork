@@ -1,26 +1,26 @@
 div.partition <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P','L','Pi')){
-   if(sum(unlist(lapply(lapply(g.list,FUN = function(x) V(x)$name),is.null)))>0){
+   if(sum(unlist(lapply(lapply(g.list,FUN = function(x) V(x)$name),is.null)))>0){#check if nodes have names
     stop('nodes must have names (use V(g)$name)')
   }
-   if(is.null(groups)){
+   if(is.null(groups)){#if groups is NULL then each node froms its own group
     groups=unique(unlist(lapply(g.list,FUN = function(g) V(g)$name)))
     names(groups)=groups
   }
   
-  if(is.null(names(groups))){
+  if(is.null(names(groups))){#check whether groups vector has nodes
     stop("groups must have names (names(groups) is NULL)")
   }
   if(prod(names(groups) %in% unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))))*prod(unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))) %in% names(groups))!=1){
     stop("the names of groups vector do not match to the names of the metaweb")
   }
-  metaweb.array <- metaweb.params(g.list,groups)
+  metaweb.array <- metaweb.params(g.list,groups)#get the metaweb array
    if(framework=='RLC'){
     if(type=='P'){
       P.mat=metaweb.array$P.mat
       P.mat=P.mat/sum(P.mat)
-      meta.P=metacommunity(P.mat)
+      meta.P=metacommunity(P.mat)#convert to class metacom for rdiversity
       
-      mAlpha=as.numeric(norm_meta_alpha(meta.P,qs = eta)[,7])
+      mAlpha=as.numeric(norm_meta_alpha(meta.P,qs = eta)[,7]) #overall alpha diversity
       
       alphas=as.matrix(norm_sub_alpha(meta.P,qs = eta)[,c(6,7)])
       alphas.vec=as.numeric(alphas[,2])
