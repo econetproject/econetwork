@@ -1,35 +1,35 @@
 dis.beta <- function(g.list,groups=NULL,eta=1,framework=c('RLC','Tu'),type=c('P','L','Pi')){
   
-  if(sum(unlist(lapply(lapply(g.list,FUN = function(x) V(x)$name),is.null)))>0){
+  if(sum(unlist(lapply(lapply(g.list,FUN = function(x) V(x)$name),is.null)))>0){#check if nodes have names
     stop('nodes must have names (use V(g)$name)')
   }
-   if(is.null(groups)){
+   if(is.null(groups)){#if groups is NULL then each node froms its own group
     groups=unique(unlist(lapply(g.list,FUN = function(g) V(g)$name)))
     names(groups)=groups
   }
   
-  if(is.null(names(groups))){
+  if(is.null(names(groups))){#check whether groups vector has nodes
     stop("groups must have names (names(groups) is NULL)")
   }
-  if(prod(names(groups) %in% unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))))*prod(unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))) %in% names(groups))!=1){
+  if(prod(names(groups) %in% unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))))*prod(unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))) %in% names(groups))!=1){ #check if the names of groups match to the names of the metaweb
     stop("the names of groups vector do not match to the names of the metaweb")
   }
 
-  metaweb.array <- metaweb.params(g.list,groups)
+  metaweb.array <- metaweb.params(g.list,groups) #get the metaweb array
   N <- ncol( metaweb.array$P.mat)
   dis <- matrix(NA, N, N)
   
   if(framework=='RLC'){
     if(type=='P'){
-      spxp=metaweb.array$P.mat
-      pb <- txtProgressBar(min = 0, max = N*(N-1)/2, style = 3)
+      spxp=metaweb.array$P.mat 
+      pb <- txtProgressBar(min = 0, max = N*(N-1)/2, style = 3) #progression bar
       comp=0
       for (i in 2:N) {
         for (j in 1:(i-1)) {
           comp=comp+1
           spxp.dummy <- spxp[,c(i,j)]
           spxp.dummy= spxp.dummy/sum(spxp.dummy)
-          spxp.meta=metacommunity(spxp.dummy)
+          spxp.meta=metacommunity(spxp.dummy) #convert to class metacom for rdiversity
           dis[i, j] <- dis[j, i] <- as.numeric(norm_meta_beta(spxp.meta,qs = eta)[7])
           setTxtProgressBar(pb,comp)
         }
@@ -38,45 +38,45 @@ dis.beta <- function(g.list,groups=NULL,eta=1,framework=c('RLC','Tu'),type=c('P'
     if(type=='L'){
      n.groups=nrow(metaweb.array$P.mat)
       meta.links <- aperm(metaweb.array$L.array,c(2,1,3))  
-      dim(meta.links) <- c(n.groups*n.groups,ncol(metaweb.array$P.mat)) 
+      dim(meta.links) <- c(n.groups*n.groups,ncol(metaweb.array$P.mat)) #transform the L array in a spxp matrix
       colnames(meta.links) <- colnames(metaweb.array$P.mat) 
-      if(sum(rowSums(meta.links)>0)<nrow(meta.links)){
+      if(sum(rowSums(meta.links)>0)<nrow(meta.links)){ #remove the lines that have only 0s
         meta.links=meta.links[-which(rowSums(meta.links)==0),]
       }
       spxp=meta.links
-      pb <- txtProgressBar(min = 0, max = N*(N-1)/2, style = 3)
+      pb <- txtProgressBar(min = 0, max = N*(N-1)/2, style = 3)#progress bar
       comp=0
       for (i in 2:N) {
         for (j in 1:(i-1)) {
           comp=comp+1
           spxp.dummy <- spxp[,c(i,j)]
-          if(sum(rowSums(spxp.dummy)>0)<nrow(spxp.dummy)){
+          if(sum(rowSums(spxp.dummy)>0)<nrow(spxp.dummy)){#remove the lines that have only 0s (in the pairwise matrix)
             spxp.dummy=spxp.dummy[-which(rowSums(spxp.dummy)==0),]
           }
           spxp.dummy= spxp.dummy/sum(spxp.dummy)
           spxp.meta=metacommunity(spxp.dummy)
-          dis[i, j] <- dis[j, i] <- as.numeric(norm_meta_beta(spxp.meta,qs = eta)[7])
+          dis[i, j] <- dis[j, i] <- as.numeric(norm_meta_beta(spxp.meta,qs = eta)[7]) #get the pairwise beta-diversity
           setTxtProgressBar(pb, comp)
         }
       }
     }
     if(type=='Pi'){
       n.groups=nrow(metaweb.array$P.mat)
-      meta.Pi <- aperm(metaweb.array$Pi.array,c(2,1,3))  
+      meta.Pi <- aperm(metaweb.array$Pi.array,c(2,1,3))  #transform the Pi array in a spxp matrix
       dim(meta.Pi) <- c(n.groups*n.groups,ncol(metaweb.array$P.mat)) 
       colnames(meta.Pi) <- colnames(metaweb.array$P.mat) 
       spxp=meta.Pi
-      pb <- txtProgressBar(min = 0, max = N*(N-1)/2, style = 3)
+      pb <- txtProgressBar(min = 0, max = N*(N-1)/2, style = 3)  #progress bar
       comp=0
       for (i in 2:N) {
         for (j in 1:(i-1)) {
           comp=comp+1
           spxp.dummy <- spxp[,c(i,j)]
-          if(length(c(which(is.na(rowSums( spxp.dummy))),which(rowSums(spxp.dummy)==0)))>0){
+          if(length(c(which(is.na(rowSums( spxp.dummy))),which(rowSums(spxp.dummy)==0)))>0){#remove the lines that have only 0s (in the pairwise matrix)
             spxp.dummy=spxp.dummy[-c(which(is.na(rowSums( spxp.dummy))),which(rowSums(spxp.dummy)==0)),]}
           spxp.dummy= spxp.dummy/sum(spxp.dummy)
           spxp.meta=metacommunity(spxp.dummy)
-          dis[i, j] <- dis[j, i] <- as.numeric(norm_meta_beta(spxp.meta,qs = eta)[7])
+          dis[i, j] <- dis[j, i] <- as.numeric(norm_meta_beta(spxp.meta,qs = eta)[7])#get the pairwise beta-diversity
           setTxtProgressBar(pb, comp)
         }
       }
