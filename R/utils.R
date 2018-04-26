@@ -1,22 +1,18 @@
-##
-## BUG here for q==l? self-loop allowed?
-##=> I think so. I didn't see a bug for this case
-##
-sbm.params <- function(g, groups){ # groups[i] for V(g)[i]
+sbm.params <- function(g, groups=NULL){ # groups[i] for V(g)[i]
   
-   if(is.null(groups)){
+   if(is.null(groups)){# each node forms its own group if groups is NULL
    groups=V(g)$name
    names(groups)=V(g)$name
  }
   
-  alpha.vec <- table(groups)
-    if(is.null(E(g)$weight)){
+  alpha.vec <- table(groups) #frequencies of the groups
+    if(is.null(E(g)$weight)){#get the (weighted adjacency matrix)
     adj.mat <- get.adjacency(g)
     }  else {
     adj.mat <- get.adjacency(g,attr = "weight")
     }
-  l.mat<-as.matrix(aggregate.Matrix(t(as.matrix(aggregate.Matrix(adj.mat,groups,fun='sum'))),groups,fun='sum'))[names(alpha.vec),names(alpha.vec)]
-  pi.mat<-l.mat/(alpha.vec%*%t(alpha.vec))
+  l.mat<-as.matrix(aggregate.Matrix(t(as.matrix(aggregate.Matrix(adj.mat,groups,fun='sum'))),groups,fun='sum'))[names(alpha.vec),names(alpha.vec)] #aggregate the adjacency matrix at a group level
+  pi.mat<-l.mat/(alpha.vec%*%t(alpha.vec)) #link probability matrix
     
     return(list(alpha=alpha.vec,
                 l=l.mat,
@@ -25,19 +21,19 @@ sbm.params <- function(g, groups){ # groups[i] for V(g)[i]
 }
 
 ## WARNING il faut que groups soit un tableau avec des names qui sont les sommets du metaweb 
-metaweb.params <- function(g.list, groups, prior.metaweb=FALSE){
+metaweb.params <- function(g.list, groups, prior.metaweb=FALSE){ #get the L,Pi arrays and P mat for a list of graph
     groups.id <- unique(groups)
     if(length(names(g.list))){
         g.id <- names(g.list)
     } else{
         g.id <- 1:length(g.list)
     }
-    Q <- length(groups.id)
+    Q <- length(groups.id) #number of different groups in the metaweb
     P.mat <- matrix(0, nrow=Q, ncol=length(g.list))
     rownames(P.mat) <- groups.id
     colnames(P.mat) <- g.id
     
-    L.array <- array(0, dim=c(Q,Q,length(g.list)))
+    L.array <- array(0, dim=c(Q,Q,length(g.list))) #stacked adjacency matrix at a group level
     dimnames(L.array)[[1]] <- if(Q>1)  groups.id else list(groups.id)
     dimnames(L.array)[[2]] <- if(Q>1)  groups.id else list(groups.id)
     dimnames(L.array)[[3]] <- g.id
