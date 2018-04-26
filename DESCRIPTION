@@ -1,11 +1,11 @@
 Package: divnet 
 Type: Package
-Title: Bla bla bla
+Title: Measurment and partitionnig of network diversity at different aggregation levels
 Version: 0.1
 Date: 2018-01-01
 Author: Stephane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
-Maintainer: Wilfried Thuiller <wilfried.thuiller@univ-grenoble-alpes.fr>
-Description: Bla bla bla developed in the paper Ohlmann et al <doi:xxxx>
+Maintainer: Marc Ohlmann <marc.ohlmann@univ-grenoble-alpes.fr>
+Description: Provides a framework for the measurement and partitioning of the diversity of a metanetwork and its constituent local networks. Marc Ohlmann et al. 
 Imports: igraph, rdiversity, Matrix.utils 
 License: GPL-3
 URL: http://www-leca.ujf-grenoble.fr
