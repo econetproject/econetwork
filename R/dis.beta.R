@@ -123,12 +123,12 @@ dis.beta <- function(g.list,groups=NULL,eta=1,framework=c('RLC','Tu'),type=c('P'
       }
     }
     if(type=='Pi'){
-      n.groups=nrow(metaweb.array$P.mat)
+          n.groups=nrow(metaweb.array$P.mat)
       meta.Pi <- aperm(metaweb.array$Pi.array,c(2,1,3))  
       dim(meta.Pi) <- c(n.groups*n.groups,ncol(metaweb.array$P.mat)) 
       colnames(meta.Pi) <- colnames(metaweb.array$P.mat) 
-     if(length(c(which(is.na(rowSums(meta.Pi))),which(rowSums(meta.Pi)==0)))>0){
-        meta.Pi=meta.Pi[-c(which(is.na(rowSums(meta.Pi))),which(rowSums(meta.Pi)==0)),]
+     if(length(which(rowSums(meta.Pi,na.rm=T)==0))>0){
+        meta.Pi=meta.Pi[-which(rowSums(meta.Pi,na.rm=T)==0),]
       }
       spxp=t(meta.Pi)
       pb <- txtProgressBar(min = 0, max = N*(N-1)/2, style = 3)
@@ -136,7 +136,7 @@ dis.beta <- function(g.list,groups=NULL,eta=1,framework=c('RLC','Tu'),type=c('P'
       for (i in 2:N) {
         for (j in 1:(i-1)) {
           comp=comp+1
-        spxp.dummy <- spxp[c(i,j), ]
+        spxp.dummy <- t(spxp[c(i,j), ])
         if(length(c(which(is.na(rowSums( spxp.dummy))),which(rowSums(spxp.dummy)==0)))>0){
             spxp.dummy=spxp.dummy[-c(which(is.na(rowSums( spxp.dummy))),which(rowSums(spxp.dummy)==0)),]}
          spxp.dummy= spxp.dummy/sum(spxp.dummy)
