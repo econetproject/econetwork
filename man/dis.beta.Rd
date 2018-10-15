@@ -1,5 +1,5 @@
-\name{dis.beta}
-\alias{dis.beta}
+\name{dis.pairwise}
+\alias{dis.pairwise}
 \title{
 Computation of the dissimilarity matrix (pairwise beta-diversity) for a set of network
 }
