@@ -1,4 +1,4 @@
-div.partition <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P','L','Pi')){
+div.partition <- function(g.list,groups,eta=1,framework=c('RLC','Chao'),type=c('P','L','Pi')){
    if(sum(unlist(lapply(lapply(g.list,FUN = function(x) V(x)$name),is.null)))>0){#check if nodes have names
     stop('nodes must have names (use V(g)$name)')
   }
@@ -77,7 +77,7 @@ div.partition <- function(g.list,groups,eta=1,framework=c('RLC','Tu'),type=c('P'
       return(list(mAlpha=mAlpha,Alphas=alphas.vec,Beta=beta,Gamma=gamma))
     }
   }
-  if(framework=='Tu'){
+  if(framework=='Chao'){
     if(type=='P'){
       abg=abgDecompQ(spxp = t(metaweb.array$P.mat),q = eta)
       return(list(mAlpha=abg$mAlpha,Alphas=abg$Alphas,Beta=abg$Beta,Gamma=abg$Gamma))
