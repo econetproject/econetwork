@@ -7,7 +7,7 @@ Partitionning network diversity in alpha, beta and gamma diversity
  This function computes alpha, beta and gamma diversity of a list of networks. It measures either group, links, or probability of links diversity. 
 }
 \usage{
-div.partition(graph.list, groups, eta=1, framework=c('RLC','Tu'), type=c('P','L','Pi'))
+div.partition(graph.list, groups, eta=1, framework=c('RLC','Chao'), type=c('P','L','Pi'))
 }
 \arguments{
   \item{graph.list}{A \code{list} of graph objects of class
@@ -16,7 +16,7 @@ div.partition(graph.list, groups, eta=1, framework=c('RLC','Tu'), type=c('P','L'
     which each node belongs to. The length of \code{groups} mustc correspond to the number of different nodes present in \code{graph.list}. The names \code{names(groups)} must
     correspond to the nodes names in \code{graph.list}.}
   \item{eta}{A positive number that controls the weight given to abundant groups/links. Default value is 1.}
-  \item{framework}{The framework used to partitionate diversity, either Reeve Leinster Cobbold ('RLC') or Tuomisto ('Tu')}
+  \item{framework}{The framework used to partitionate diversity, either Reeve Leinster Cobbold ('RLC') or Chao ('Chao')}
   \item{type}{The type of diversity to measure and partitionate. It can be groups diversity ('P'), link diversity ('L') or probability of link diversity ('Pi').}
 }
 \details{
@@ -54,5 +54,5 @@ g.list=graph.list
 groups=c(rep("a",23),rep("b",34)) #vector that gives the group of each node
 names(groups)=as.character(1:57)
 
-div.partition(graph.list,groups,framework ='RLC',type = 'L') #measure of link diversity
+div.partition(graph.list,groups,framework ='Chao',type = 'L') #measure of link diversity
 }
