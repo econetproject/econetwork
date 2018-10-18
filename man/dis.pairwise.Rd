@@ -7,14 +7,14 @@ Computation of the dissimilarity matrix (pairwise beta-diversity) for a set of n
   Computation of the dissimilarity matrix for a set of network. Each value of the matrix is the pairwise beta-diversity, computed using Hill numbers. It measures either group, links, or probability of links dissimilarity.  
 }
 \usage{
-dis.beta(graph.list, groups, eta=1, type=c('P','L','Pi'))
+dis.beta(graph.list, groups=NULL, eta=1, type=c('P','L','Pi'))
 }
 \arguments{
   \item{graph.list}{A \code{list} of graph objects of class
     \code{igraph}.}
   \item{groups}{A named vector of class \code{character}  indicating the group to
     which each node belongs to. The length of \code{groups} must correspond to the number of different nodes present in \code{graph.list}. The names \code{names(groups)} must
-    correspond to the nodes names in \code{graph.list}.}
+    correspond to the nodes names in \code{graph.list}. If NULL, the groups are the initial nodes.}
   \item{eta}{A positive number that controls the weight given to abundant groups/links. Default value is 1.}
   \item{type}{The type of diversity used to measure dissimilarity. It can be groups diversity ('P'), link diversity ('L') or probability of link diversity ('Pi').}
 }
