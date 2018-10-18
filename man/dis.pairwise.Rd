@@ -16,7 +16,6 @@ dis.beta(graph.list, groups, eta=1, framework=c('RLC','Tu'), type=c('P','L','Pi'
     which each node belongs to. The length of \code{groups} must correspond to the number of different nodes present in \code{graph.list}. The names \code{names(groups)} must
     correspond to the nodes names in \code{graph.list}.}
   \item{eta}{A positive number that controls the weight given to abundant groups/links. Default value is 1.}
-  \item{framework}{The framework used to compute dissimilarity based on diversity, either Reeve Leinster Cobbold ('RLC') or Tuomisto ('Tu').}
   \item{type}{The type of diversity used to measure dissimilarity. It can be groups diversity ('P'), link diversity ('L') or probability of link diversity ('Pi').}
 }
 \details{
@@ -48,5 +47,5 @@ g.list=graph.list
 groups=c(rep("a",23),rep("b",34)) #vector that gives the group of each node
 names(groups)=as.character(1:57)
 
-dis.beta(graph.list,groups,framework ='RLC',type = 'L') #dissimilarity matrix based on links beta-diversity
+dis.pairwise(graph.list,groups,type = 'L') #dissimilarity matrix based on links beta-diversity
 }
