@@ -1,4 +1,4 @@
-Package: divnet 
+Package: NetDiv
 Type: Package
 Title: Measurment and partitionnig of network diversity at different aggregation levels
 Version: 0.1
