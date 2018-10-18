@@ -7,7 +7,7 @@ Computation of the dissimilarity matrix (pairwise beta-diversity) for a set of n
   Computation of the dissimilarity matrix for a set of network. Each value of the matrix is the pairwise beta-diversity, computed using Hill numbers. It measures either group, links, or probability of links dissimilarity.  
 }
 \usage{
-dis.beta(graph.list, groups, eta=1, framework=c('RLC','Tu'), type=c('P','L','Pi'))
+dis.beta(graph.list, groups, eta=1, type=c('P','L','Pi'))
 }
 \arguments{
   \item{graph.list}{A \code{list} of graph objects of class
@@ -29,7 +29,7 @@ dis.beta(graph.list, groups, eta=1, framework=c('RLC','Tu'), type=c('P','L','Pi'
 }
 \author{
   Author: Stéphane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
-  Maintainer: Wilfried Thuiller <wilfried.thuiller@univ-grenoble-alpes.fr>
+  Maintainer: Marc Ohlmann <marc.ohlmann@univ-grenoble-alpes.fr>
 }
 \examples{
 #Generating a set of Erdos-Renyi graphs and give name to nodes.
