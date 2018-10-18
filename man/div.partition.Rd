@@ -13,8 +13,8 @@ div.partition(graph.list, groups, eta=1, framework=c('RLC','Chao'), type=c('P','
   \item{graph.list}{A \code{list} of graph objects of class
     \code{igraph}.}
   \item{groups}{A named vector of class \code{character}  indicating the group to
-    which each node belongs to. The length of \code{groups} mustc correspond to the number of different nodes present in \code{graph.list}. The names \code{names(groups)} must
-    correspond to the nodes names in \code{graph.list}.}
+    which each node belongs to. The length of \code{groups} must correspond to the number of different nodes present in \code{graph.list}. The names \code{names(groups)} must
+    correspond to the nodes names in \code{graph.list}. If NULL, the groups are the initial nodes.}
   \item{eta}{A positive number that controls the weight given to abundant groups/links. Default value is 1.}
   \item{framework}{The framework used to partitionate diversity, either Reeve Leinster Cobbold ('RLC') or Chao ('Chao')}
   \item{type}{The type of diversity to measure and partitionate. It can be groups diversity ('P'), link diversity ('L') or probability of link diversity ('Pi').}
