@@ -1,5 +1,5 @@
-\name{dis.pairwise}
-\alias{dis.pairwise}
+\name{disPairwise}
+\alias{disPairwise}
 \title{
 Computation of the dissimilarity matrix (pairwise beta-diversity) for a set of network
 }
@@ -7,14 +7,14 @@ Computation of the dissimilarity matrix (pairwise beta-diversity) for a set of n
   Computation of the dissimilarity matrix for a set of network. Each value of the matrix is the pairwise beta-diversity, computed using Hill numbers. It measures either group, links, or probability of links dissimilarity.  
 }
 \usage{
-dis.beta(graph.list, groups=NULL, eta=1, type=c('P','L','Pi'))
+disPairwise(graphList, groups=NULL, eta=1, type=c('P','L','Pi'))
 }
 \arguments{
-  \item{graph.list}{A \code{list} of graph objects of class
+  \item{graphList}{A \code{list} of graph objects of class
     \code{igraph}.}
   \item{groups}{A named vector of class \code{character}  indicating the group to
-    which each node belongs to. The length of \code{groups} must correspond to the number of different nodes present in \code{graph.list}. The names \code{names(groups)} must
-    correspond to the nodes names in \code{graph.list}. If NULL, the groups are the initial nodes.}
+    which each node belongs to. The length of \code{groups} must correspond to the number of different nodes present in \code{graphList}. The names \code{names(groups)} must
+    correspond to the nodes names in \code{graphList}. If NULL, the groups are the initial nodes.}
   \item{eta}{A positive number that controls the weight given to abundant groups/links. Default value is 1.}
   \item{type}{The type of diversity used to measure dissimilarity. It can be groups diversity ('P'), link diversity ('L') or probability of link diversity ('Pi').}
 }
@@ -25,27 +25,29 @@ dis.beta(graph.list, groups=NULL, eta=1, type=c('P','L','Pi'))
   Return a \code{matrix} whose elements are the pairwise dissimilarities. 
 }
 \references{
-
+Marc Ohlmann, Vincent Miele, Stéphane Dray, Loïc Chalmandrier, Louise
+O’Connor & Wilfried Thuiller, Diversity indices for ecological networks
+: a unifying framework using Hill numbers. Ecology Letters (2019)
 }
 \author{
-  Author: Stéphane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
-  Maintainer: Marc Ohlmann <marc.ohlmann@univ-grenoble-alpes.fr>
+Authors: Stéphane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
+Maintainer: Wilfried Thuiller <wilfried.thuiller@univ-grenoble-alpes.fr>
 }
 \examples{
 #Generating a set of Erdos-Renyi graphs and give name to nodes.
-n.graph=10
-graph.list=c()
+nbGraph=10
+graphList=c()
 n=57 #number of nodes of each graph
 C=0.1  #connectance of each graph
-for(i in 1:n.graph){
-  graph.loc=erdos.renyi.game(n,type = 'gnp',p.or.m = C,directed = T)
-  V(graph.loc)$name=as.character(1:57)
-  graph.list=c(graph.list,list(graph.loc))
+for(i in 1:nbGraph){
+  graphLoc = erdos.renyi.game(n, type = 'gnp', p.or.m = C, directed = T)
+  V(graphLoc)$name = as.character(1:57)
+  graphList = c(graphList,list(graphLoc))
 }
 
-g.list=graph.list
+gList=graphList
 groups=c(rep("a",23),rep("b",34)) #vector that gives the group of each node
 names(groups)=as.character(1:57)
 
-dis.pairwise(graph.list,groups,type = 'L') #dissimilarity matrix based on links beta-diversity
+disPairwise(graphList,groups,type = 'L') #dissimilarity matrix based on links beta-diversity
 }

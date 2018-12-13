@@ -1,19 +1,34 @@
-div.partition <- function(g.list,groups,eta=1,framework=c('RLC','Chao'),type=c('P','L','Pi')){
-   if(sum(unlist(lapply(lapply(g.list,FUN = function(x) V(x)$name),is.null)))>0){#check if nodes have names
+# This file is part of econetwork
+
+# econetwork is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# econetwork is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with econetwork.  If not, see <http://www.gnu.org/licenses/>
+
+divPartition <- function(gList, groups, eta=1, framework=c('RLC','Chao'), type=c('P','L','Pi')){
+   if(sum(unlist(lapply(lapply(gList,FUN = function(x) V(x)$name),is.null)))>0){#check if nodes have names
     stop('nodes must have names (use V(g)$name)')
   }
    if(is.null(groups)){#if groups is NULL then each node froms its own group
-    groups=unique(unlist(lapply(g.list,FUN = function(g) V(g)$name)))
+    groups=unique(unlist(lapply(gList,FUN = function(g) V(g)$name)))
     names(groups)=groups
   }
   
   if(is.null(names(groups))){#check whether groups vector has nodes
     stop("groups must have names (names(groups) is NULL)")
   }
-  if(prod(names(groups) %in% unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))))*prod(unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))) %in% names(groups))!=1){
+  if(prod(names(groups) %in% unique(unlist(lapply(gList,FUN = function(g) V(g)$name))))*prod(unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))) %in% names(groups))!=1){
     stop("the names of groups vector do not match to the names of the metaweb")
   }
-  metaweb.array <- metaweb.params(g.list,groups)#get the metaweb array
+  metaweb.array <- metawebParams(gList,groups)#get the metaweb array
    if(framework=='RLC'){
     if(type=='P'){
       P.mat=metaweb.array$P.mat
