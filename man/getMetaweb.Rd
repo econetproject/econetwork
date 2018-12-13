@@ -28,10 +28,11 @@ Authors: Stephane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
 Maintainer: Wilfried Thuiller <wilfried.thuiller@univ-grenoble-alpes.fr>
 }
 \examples{
-## generating a list of igraph objects
+# Generating a set of Erdos-Renyi graphs
+library(igraph)
 gList <- c()
 for(i in 1:4){
-  graphLocal <- erdos.renyi.game(60, type = 'gnp', p.or.m=0.1, directed=T)
+  graphLocal <- erdos.renyi.game(60, type = 'gnp', p.or.m=0.1, directed=TRUE)
   V(graphLocal)$name <- as.character(1:60)
   gList <- c(gList, list(graphLocal))
 }

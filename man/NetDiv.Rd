@@ -16,7 +16,9 @@ Authors: Stephane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
 Maintainer: Marc Ohlmann <marc.ohlmann@univ-grenoble-alpes.fr>
 }
 \references{
-
+Marc Ohlmann, Vincent Miele, Stephane Dray, Loic Chalmandrier, Louise
+O'Connor & Wilfried Thuiller, Diversity indices for ecological networks
+: a unifying framework using Hill numbers. Ecology Letters (2019)
 }
 \keyword{ package }
 \keyword{ ecology }

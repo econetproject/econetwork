@@ -19,9 +19,6 @@ divPartition(gList, groups, eta=1, framework=c('RLC','Chao'), type=c('P','L','Pi
   \item{framework}{The framework used to partitionate diversity, either Reeve Leinster Cobbold ('RLC') or Chao ('Chao')}
   \item{type}{The type of diversity to measure and partitionate. It can be groups diversity ('P'), link diversity ('L') or probability of link diversity ('Pi').}
 }
-\details{
- 
-}
 \value{
 Returns a \code{list} the following components:
 \item{mAlpha}{The mean value of alpha-diversity accross all networks.}
@@ -39,20 +36,21 @@ Authors: Stephane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
 Maintainer: Wilfried Thuiller <wilfried.thuiller@univ-grenoble-alpes.fr>
 }
 \examples{
-#Generating a set of Erdos-Renyi graphs and give name to nodes.
-n.graph=10
-gList=c()
-n=57 #number of nodes of each graph
-C=0.1  #connectance of each graph
-for(i in 1:n.graph){
-  graph.loc=erdos.renyi.game(n,type = 'gnp',p.or.m = C,directed = T)
-  V(graph.loc)$name=as.character(1:57)
-  gList=c(graph.list,list(graph.loc))
+# Generating a set of Erdos-Renyi graphs and give name to nodes
+library(igraph)
+nbGraph = 10
+gList = c()
+n = 57 # number of nodes of each graph
+C = 0.1  # connectance of each graph
+for(i in 1:nbGraph){
+  graphLocal = erdos.renyi.game(n, type='gnp', p.or.m =C, directed=TRUE)
+  V(graphLocal)$name = as.character(1:57)
+  gList = c(gList,list(graphLocal))
 }
 
-g.list=gList
-groups=c(rep("a",23),rep("b",34)) #vector that gives the group of each node
-names(groups)=as.character(1:57)
+groups = c(rep("a",23),rep("b",34)) # vector that gives the group of each node
+names(groups) = as.character(1:57)
 
-divPartition(gList,groups,framework ='Chao',type = 'L') #measure of link diversity
+# Measure of link diversity
+divPartition(gList, groups, framework='Chao', type = 'L') 
 }

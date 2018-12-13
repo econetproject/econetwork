@@ -2,55 +2,51 @@ library(igraph)
 library(NetDiv)
 
 #We generate a set of Erdos-Renyi graphs and gives ids.
-n.graph=10
-graph.list=c()
+nbGraph = 10
+gList = c()
 
 set.seed(1)
-n=57 #number of nodes of each graph, of course, we could have chosen a value for each graph
-C=0.1  #connectance of each graph
+n = 57 #number of nodes of each graph, of course, we could have chosen a value for each graph
+C = 0.1  #connectance of each graph
 
-groups <- rep(-1,n)
-groups[1:19]=1
-groups[20:38]=2
-groups[39:57]=3
-names(groups) <- 1:57 ## WARNING cette ligne est nécessaire
+groups = rep(-1,n)
+groups[1:19] = 1
+groups[20:38] = 2
+groups[39:57] = 3
+names(groups) = 1:57 ## WARNING cette ligne est nécessaire
 
-for(i in 1:n.graph){
-  graph.loc=erdos.renyi.game(n,type = 'gnp',p.or.m = C,directed = T)
-  V(graph.loc)$name=as.character(1:n)
-  graph.list=c(graph.list,list(graph.loc))
+for(i in 1:nbGraph){
+  graphLoc = erdos.renyi.game(n,type = 'gnp',p.or.m = C,directed = T)
+  V(graphLoc)$name = as.character(1:n)
+  gList = c(gList,list(graphLoc))
 }
-names(graph.list)=LETTERS[1:10]
+names(gList) = LETTERS[1:10]
 
 ##source("../R/get.metaweb.R")
-g.metaweb <- get.metaweb(graph.list)
+gMetaweb <- getMetaweb(gList)
 
 TEST <- FALSE
 if(TEST){
+    library(Matrix.utils)
     source("../R/utils.R")
-    meta.array <- metaweb.params(graph.list, groups)
+    metaArray <- metawebParams(gList, groups)
 }
 
-##source("../R/div.partition.R")
-div.partition(graph.list, groups, eta=1, framework = 'RLC',type = 'P')
-div.partition(graph.list, groups, eta=1, framework = 'RLC',type = 'L')
-div.partition(graph.list, groups, eta=1, framework = 'RLC',type = 'Pi')  #same value due to the fact that we have an equal proportion of ids...
+divPartition(gList, groups, eta=1, framework='RLC', type='P')
+divPartition(gList, groups, eta=1, framework='RLC', type='L')
+divPartition(gList, groups, eta=1, framework='RLC', type='Pi')  #same value due to the fact that we have an equal proportion of ids...
 
-##source("../R/chalmandrier.R")
-div.partition(graph.list, groups, eta=1, framework = 'Tu',type = 'P')
-div.partition(graph.list, groups, eta=1, framework = 'Tu',type = 'L')
-div.partition(graph.list, groups, eta=1, framework = 'Tu',type = 'Pi')  #same value due to the fact that we have an equal proportion of ids...
+divPartition(gList, groups, eta=1, framework='Chao', type='P')
+divPartition(gList, groups, eta=1, framework='Chao', type='L')
+divPartition(gList, groups, eta=1, framework='Chao', type='Pi')  #same value due to the fact that we have an equal proportion of ids...
 
-#dissimilarity matrix
+disPairwise(gList, groups, eta=1, type='P')
+disPairwise(gList, groups, eta=1, type='L')
+disPairwise(gList, groups, eta=1, type='Pi')
 
-##source("../R/dis.beta.R")
-dis.pairwise(graph.list, groups, eta=1, type = 'P')
-dis.pairwise(graph.list, groups, eta=1, type = 'L')
-dis.pairwise(graph.list, groups, eta=1, type = 'Pi')
-
-dis.pairwise(graph.list, groups, eta=1, type = 'P')
-dis.pairwise(graph.list, groups, eta=1, type = 'L')
-dis.pairwise(graph.list, groups, eta=1, type = 'Pi')
+disPairwise(gList, groups, eta=1, type='P')
+disPairwise(gList, groups, eta=1, type='L')
+disPairwise(gList, groups, eta=1, type='Pi')
 
 
 

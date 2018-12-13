@@ -18,9 +18,6 @@ disPairwise(gList, groups=NULL, eta=1, type=c('P','L','Pi'))
   \item{eta}{A positive number that controls the weight given to abundant groups/links. Default value is 1.}
   \item{type}{The type of diversity used to measure dissimilarity. It can be groups diversity ('P'), link diversity ('L') or probability of link diversity ('Pi').}
 }
-\details{
-  
-}
 \value{
   Return a \code{matrix} whose elements are the pairwise dissimilarities. 
 }
@@ -34,19 +31,21 @@ Authors: Stephane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
 Maintainer: Wilfried Thuiller <wilfried.thuiller@univ-grenoble-alpes.fr>
 }
 \examples{
-#Generating a set of Erdos-Renyi graphs and give name to nodes.
-nbGraph=10
-gList=c()
-n=57 #number of nodes of each graph
-C=0.1  #connectance of each graph
+# Generating a set of Erdos-Renyi graphs and give name to nodes.
+library(igraph)
+nbGraph = 10
+gList = c()
+n = 57 # number of nodes of each graph
+C = 0.1  # connectance of each graph
 for(i in 1:nbGraph){
-  graphLoc = erdos.renyi.game(n, type = 'gnp', p.or.m = C, directed = T)
-  V(graphLoc)$name = as.character(1:57)
-  gList = c(gList,list(graphLoc))
+  graphLocal = erdos.renyi.game(n, type='gnp', p.or.m =C, directed=TRUE)
+  V(graphLocal)$name = as.character(1:57)
+  gList = c(gList,list(graphLocal))
 }
 
-groups=c(rep("a",23),rep("b",34)) #vector that gives the group of each node
-names(groups)=as.character(1:57)
+groups = c(rep("a",23),rep("b",34)) # vector that gives the group of each node
+names(groups) = as.character(1:57)
 
-disPairwise(gList,groups,type = 'L') #dissimilarity matrix based on links beta-diversity
+# Dissimilarity matrix based on links beta-diversity
+disPairwise(gList, groups, type = 'L') 
 }
