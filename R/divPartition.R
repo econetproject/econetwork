@@ -25,7 +25,7 @@ divPartition <- function(gList, groups, eta=1, framework=c('RLC','Chao'), type=c
   if(is.null(names(groups))){#check whether groups vector has nodes
     stop("groups must have names (names(groups) is NULL)")
   }
-  if(prod(names(groups) %in% unique(unlist(lapply(gList,FUN = function(g) V(g)$name))))*prod(unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))) %in% names(groups))!=1){
+  if(prod(names(groups) %in% unique(unlist(lapply(gList,FUN = function(g) V(g)$name))))*prod(unique(unlist(lapply(gList,FUN = function(g) V(g)$name))) %in% names(groups))!=1){
     stop("the names of groups vector do not match to the names of the metaweb")
   }
   metaweb.array <- metawebParams(gList,groups)#get the metaweb array

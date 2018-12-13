@@ -77,7 +77,7 @@ metawebParams <- function(gList, groups, priorMetaweb=FALSE){
     else {
         g.metaweb <- getMetaweb(gList)
         Pi.metaweb <- sbmParams(g.metaweb,groups)$pi
-        Pi.array.metaweb <- array(rep(Pi.metaweb, length(gList)), dim = c(Q,Q,length(g.list)))
+        Pi.array.metaweb <- array(rep(Pi.metaweb, length(gList)), dim = c(Q,Q,length(gList)))
         dimnames(Pi.array.metaweb)[[1]] <- groups.id
         dimnames(Pi.array.metaweb)[[2]] <- groups.id 
         dimnames(Pi.array.metaweb)[[3]] <- g.id

@@ -26,7 +26,7 @@ disPairwise <- function(gList, groups=NULL, eta=1, type=c('P','L','Pi')){
   if(is.null(names(groups))){#check whether groups vector has nodes
     stop("groups must have names (names(groups) is NULL)")
   }
-  if(prod(names(groups) %in% unique(unlist(lapply(gList,FUN = function(g) V(g)$name))))*prod(unique(unlist(lapply(g.list,FUN = function(g) V(g)$name))) %in% names(groups))!=1){ #check if the names of groups match to the names of the metaweb
+  if(prod(names(groups) %in% unique(unlist(lapply(gList,FUN = function(g) V(g)$name))))*prod(unique(unlist(lapply(gList,FUN = function(g) V(g)$name))) %in% names(groups))!=1){ #check if the names of groups match to the names of the metaweb
     stop("the names of groups vector do not match to the names of the metaweb")
   }
 

@@ -12,8 +12,7 @@ Computation of diversity indices and dissimilarities for networks.
 This package allow to compute and partitionate diversity indices for networks while aggregating the nodes and links into higher relevant entities.
 }
 \author{
-Authors: Stéphane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
-  
+Authors: Stephane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
 Maintainer: Marc Ohlmann <marc.ohlmann@univ-grenoble-alpes.fr>
 }
 \references{
