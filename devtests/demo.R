@@ -1,5 +1,5 @@
 library(igraph)
-library(divnet)
+library(NetDiv)
 
 #We generate a set of Erdos-Renyi graphs and gives ids.
 n.graph=10
@@ -44,13 +44,13 @@ div.partition(graph.list, groups, eta=1, framework = 'Tu',type = 'Pi')  #same va
 #dissimilarity matrix
 
 ##source("../R/dis.beta.R")
-dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'P')
-dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'L')
-dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'Pi')
+dis.pairwise(graph.list, groups, eta=1, type = 'P')
+dis.pairwise(graph.list, groups, eta=1, type = 'L')
+dis.pairwise(graph.list, groups, eta=1, type = 'Pi')
 
-dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'P')
-dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'L')
-dis.beta(graph.list, groups, eta=1, framework = 'RLC',type = 'Pi')
+dis.pairwise(graph.list, groups, eta=1, type = 'P')
+dis.pairwise(graph.list, groups, eta=1, type = 'L')
+dis.pairwise(graph.list, groups, eta=1, type = 'Pi')
 
 
 
