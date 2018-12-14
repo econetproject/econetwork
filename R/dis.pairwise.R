@@ -93,7 +93,6 @@ dis.pairwise <- function(g.list,groups=NULL,eta=1,type=c('P','L','Pi')){
         if(eta==1){
           res=(log(div$Gamma)-log(div$mAlpha))/(log(2))
         }
-        res <- 1-((1/div$Beta)^(eta-1)-(1/2)^(eta-1))/(1-(1/2)^(eta-1))
         dis[i, j] <- dis[j, i] <- res
         setTxtProgressBar(pb, comp)
         }
