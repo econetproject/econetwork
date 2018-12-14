@@ -1,0 +1,3 @@
+## import(...package-name...)
+import(igraph)
+## export(...function-name...)
