@@ -2,7 +2,7 @@ Package: econetwork
 Type: Package
 Title: Mining Ecological Networks
 Version: 0.1
-Date: 2018-21-12
+Date: 2018-12-17
 Author: Stephane Dray, Catherine Matias, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
 Maintainer: Vincent Miele <vincent.miele@univ-lyon1.fr>
 Description: A collection of cutting-edge tools, methods and models for the analysis of ecological networks.

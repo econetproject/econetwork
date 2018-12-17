@@ -3,6 +3,8 @@ build
 tmp
 .git                # Git directories
 ^.*\.gz$            # After R CMD build
+^.*\.tar\.gz$       # After R CMD build
+econetwork_\d\.\d\.tar\.gz
 ^.*\.zip$           # Idem
 ^.*\.Rproj$         # Automatically added by RStudio,
 ^\.Rproj\.user$     # used for temporary files. 
