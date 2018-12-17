@@ -1,11 +1,12 @@
-Package: NetDiv
+Package: econetwork
 Type: Package
-Title: Measurment and partitionnig of network diversity at different aggregation levels
+Title: Mining Ecological Networks
 Version: 0.1
-Date: 2018-01-01
-Author: Stephane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
-Maintainer: Marc Ohlmann <marc.ohlmann@univ-grenoble-alpes.fr>
-Description: Provides a framework for the measurement and partitioning of the diversity of a metanetwork and its constituent local networks. Marc Ohlmann et al. 
-Imports: igraph, rdiversity, Matrix.utils 
+Date: 2018-21-12
+Author: Stephane Dray, Catherine Matias, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
+Maintainer: Vincent Miele <vincent.miele@univ-lyon1.fr>
+Description: A collection of cutting-edge tools, methods and models for the analysis of ecological networks
+Imports: parallel, graphics, stats, igraph, rdiversity, Matrix.utils
+LinkingTo: 
 License: GPL-3
-URL: http://www-leca.ujf-grenoble.fr
+URL: https://plmlab.math.cnrs.fr/econetproject/econetwork
