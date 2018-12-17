@@ -1,5 +1,5 @@
+library(econetwork)
 library(igraph)
-library(NetDiv)
 
 #We generate a set of Erdos-Renyi graphs and gives ids.
 nbGraph = 10
@@ -39,10 +39,6 @@ divPartition(gList, groups, eta=1, framework='RLC', type='Pi')  #same value due 
 divPartition(gList, groups, eta=1, framework='Chao', type='P')
 divPartition(gList, groups, eta=1, framework='Chao', type='L')
 divPartition(gList, groups, eta=1, framework='Chao', type='Pi')  #same value due to the fact that we have an equal proportion of ids...
-
-disPairwise(gList, groups, eta=1, type='P')
-disPairwise(gList, groups, eta=1, type='L')
-disPairwise(gList, groups, eta=1, type='Pi')
 
 disPairwise(gList, groups, eta=1, type='P')
 disPairwise(gList, groups, eta=1, type='L')

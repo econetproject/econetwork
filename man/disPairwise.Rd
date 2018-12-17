@@ -1,10 +1,10 @@
 \name{disPairwise}
 \alias{disPairwise}
 \title{
-Computation of the dissimilarity matrix (pairwise beta-diversity) for a set of network
+Computation of the dissimilarity matrix (pairwise beta-diversity) for a set of networks
 }
 \description{
-  Computation of the dissimilarity matrix for a set of network. Each value of the matrix is the pairwise beta-diversity, computed using Hill numbers. It measures either group, links, or probability of links dissimilarity.  
+  Computation of the dissimilarity matrix for a set of networks. Each value of the matrix is the pairwise beta-diversity, computed using Hill numbers. It measures the dissimilarity in terms of groups, links, or probability of links respectively.  
 }
 \usage{
 disPairwise(gList, groups=NULL, eta=1, type=c('P','L','Pi'))
@@ -16,7 +16,7 @@ disPairwise(gList, groups=NULL, eta=1, type=c('P','L','Pi'))
     which each node belongs to. The length of \code{groups} must correspond to the number of different nodes present in \code{gList}. The names \code{names(groups)} must
     correspond to the nodes names in \code{gList}. If NULL, the groups are the initial nodes.}
   \item{eta}{A positive number that controls the weight given to abundant groups/links. Default value is 1.}
-  \item{type}{The type of diversity used to measure dissimilarity. It can be groups diversity ('P'), link diversity ('L') or probability of link diversity ('Pi').}
+  \item{type}{The type of diversity used to measure dissimilarity. It can be groups diversity ('P'), links diversity ('L') or probability of links diversity ('Pi').}
 }
 \value{
   Return a \code{matrix} whose elements are the pairwise dissimilarities. 

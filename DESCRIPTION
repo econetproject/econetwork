@@ -5,8 +5,8 @@ Version: 0.1
 Date: 2018-21-12
 Author: Stephane Dray, Catherine Matias, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
 Maintainer: Vincent Miele <vincent.miele@univ-lyon1.fr>
-Description: A collection of cutting-edge tools, methods and models for the analysis of ecological networks
-Imports: parallel, graphics, stats, igraph, rdiversity, Matrix.utils
+Description: A collection of cutting-edge tools, methods and models for the analysis of ecological networks.
+Imports: stats, igraph, rdiversity, Matrix.utils
 LinkingTo: 
 License: GPL-3
 URL: https://plmlab.math.cnrs.fr/econetproject/econetwork
