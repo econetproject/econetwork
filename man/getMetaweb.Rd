@@ -19,9 +19,7 @@ getMetaweb(gList)
 \code{getMetaweb} returns an object of class \code{igraph}.
 }
 \references{
-Marc Ohlmann, Vincent Miele, Stephane Dray, Loic Chalmandrier, Louise
-O'Connor & Wilfried Thuiller, Diversity indices for ecological networks
-: a unifying framework using Hill numbers. Ecology Letters (2019)
+Marc Ohlmann, Vincent Miele, Stephane Dray, Loic Chalmandrier, Louise O'Connor & Wilfried Thuiller, Diversity indices for ecological networks: a unifying framework using Hill numbers. Ecology Letters (2019) <doi:10.1111/ele.13221>
 }
 \author{
 Authors: Stephane Dray, Vincent Miele, Marc Ohlmann, Wilfried Thuiller
