@@ -6,9 +6,10 @@ A collection of advanced tools, methods and models specifically  designed  for  
 
 ## Installation
 
-The stable release can be installed from the `CRAN`. 
+The stable release can be installed from the `CRAN` or  using the `R` package `devtoools` with the command 
+`install_github("econetproject/econetwork")` 
 
-The last version available on this site can be installed using the `R` package `devtoools` with the command 
+The last version available an be installed using the `R` package `devtoools` with the command 
 `install_git("https://plmlab.math.cnrs.fr/econetproject/econetwork")` 
 
 ## Authors
